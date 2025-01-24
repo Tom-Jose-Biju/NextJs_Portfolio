@@ -1,5 +1,5 @@
-import AboutPageContent from '@/components/AboutPage'
-
 export default function Page() {
-  return <AboutPageContent />
+  return (
+    <div>About Page</div>
+  )
 }
