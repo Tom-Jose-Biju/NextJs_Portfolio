@@ -13,39 +13,44 @@ permissions:
 
 # Allow only one concurrent deployment
 concurrency:
-  group: 'pages'
+  group: "pages"
   cancel-in-progress: true
 
+env:
+  BUILD_PATH: "." # default value when not using subfolders
+  
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
+        
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: "18"
           cache: 'npm'
-
+          
       - name: Setup Pages
         uses: actions/configure-pages@v4
         with:
           static_site_generator: next
-
+          
       - name: Install dependencies
         run: npm ci
-
-      - name: Build
+        working-directory: ${{ env.BUILD_PATH }}
+        
+      - name: Build with Next.js
         run: npm run build
+        working-directory: ${{ env.BUILD_PATH }}
         env:
           NEXT_PUBLIC_BASE_PATH: /NextJs_Portfolio
-
+          
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: ${{ env.BUILD_PATH }}/out
 
   deploy:
     environment:
