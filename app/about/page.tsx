@@ -1,9 +1,5 @@
-import dynamic from 'next/dynamic'
-
-const AboutPageSection = dynamic(() => import('@/components/sections/AboutPage'), {
-  ssr: true
-})
+import AboutClient from '@/components/AboutClient'
 
 export default function Page() {
-  return <AboutPageSection />
+  return <AboutClient />
 }
