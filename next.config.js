@@ -12,6 +12,8 @@ const nextConfig = {
     domains: ['images.unsplash.com'],
     unoptimized: true,
   },
+  distDir: 'out',
+  trailingSlash: true,
 }
 
 module.exports = nextConfig 
