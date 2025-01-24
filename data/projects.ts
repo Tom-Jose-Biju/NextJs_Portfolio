@@ -25,6 +25,6 @@ export const projects: Project[] = [
     image: '/images/projects/portfolio.jpg',
     technologies: ['Next.js', 'React', 'TailwindCSS', 'Framer Motion'],
     demo: 'https://tom-jose-biju.vercel.app',
-    github: 'https://github.com/Tom-Jose-Biju/portfolio'
+    github: 'https://github.com/Tom-Jose-Biju/NextJs_Portfolio'
   }
 ];

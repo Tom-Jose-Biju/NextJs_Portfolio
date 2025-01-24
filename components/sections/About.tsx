@@ -9,7 +9,7 @@ import {
 } from 'react-icons/fa'
 import { TbBrandNextjs } from 'react-icons/tb'
 
-export const AboutSection = () => {
+export const AboutSectionHome = () => {
   const containerRef = useRef(null)
   const isInView = useInView(containerRef, { once: true, margin: "-100px" })
 
