@@ -3,6 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   output: 'export',
+  basePath: '/NextJs_Portfolio',
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
   },
