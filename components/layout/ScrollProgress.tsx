@@ -62,11 +62,12 @@ export const ScrollProgress = ({
     const container = document.querySelector('.horizontal-scroll-container');
     if (!container) return;
 
-    container.addEventListener('wheel', handleWheel, { passive: false });
+    const wheelHandler = (e: Event) => handleWheel(e as WheelEvent);
+    container.addEventListener('wheel', wheelHandler, { passive: false });
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      container.removeEventListener('wheel', handleWheel);
+      container.removeEventListener('wheel', wheelHandler);
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [handleWheel, handleKeyDown]);

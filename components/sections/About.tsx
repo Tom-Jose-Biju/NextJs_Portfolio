@@ -9,7 +9,7 @@ import {
 } from 'react-icons/fa'
 import { TbBrandNextjs } from 'react-icons/tb'
 
-function AboutSectionHome() {
+export function AboutSectionHome() {
   const containerRef = useRef(null)
   const isInView = useInView(containerRef, { once: true, margin: "-100px" })
 
@@ -271,6 +271,4 @@ function AboutSectionHome() {
       </div>
     </motion.div>
   )
-}
-
-export { AboutSectionHome } 
+} 

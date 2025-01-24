@@ -1,5 +1,11 @@
+'use client'
+
 import AboutClient from '@/components/AboutClient'
 
 export default function Page() {
-  return <AboutClient />
+  return (
+    <div className="min-h-screen">
+      <AboutClient />
+    </div>
+  )
 }
