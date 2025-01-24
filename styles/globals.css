@@ -1,0 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --mystic-dark: #0f1117;
+  --mystic-darker: #070809;
+  --mystic-light: #c9d1d9;
+  --mystic-accent: #00ffd5;
+  --mystic-secondary: #7928ca;
+  --mystic-tertiary: #00b894;
+  --mystic-glow: rgba(0, 255, 213, 0.1);
+  --mystic-shadow: rgba(0, 0, 0, 0.5);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  background: var(--mystic-darker);
+  color: var(--mystic-light);
+}
+
+body {
+  overflow-x: hidden;
+  background: 
+    radial-gradient(circle at 50% 0%, var(--mystic-glow) 0%, transparent 50%),
+    linear-gradient(180deg, var(--mystic-darker) 0%, var(--mystic-dark) 100%);
+}
+
+/* Scroll Progress Bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--mystic-accent);
+  transform-origin: 0%;
+  z-index: 100;
+  box-shadow: 0 0 10px var(--mystic-accent);
+}
+
+/* Section Styles */
+section {
+  min-height: 100vh;
+  scroll-snap-align: start;
+  position: relative;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--mystic-darker);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--mystic-accent);
+  border-radius: 4px;
+  box-shadow: 0 0 5px var(--mystic-accent);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--mystic-secondary);
+}
+
+/* Mystic Card */
+.mystic-card {
+  background: rgba(15, 17, 23, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 255, 213, 0.1);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.4s ease;
+  box-shadow: 0 8px 32px var(--mystic-shadow);
+}
+
+.mystic-card:hover {
+  border-color: var(--mystic-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px var(--mystic-shadow),
+              0 0 20px var(--mystic-glow);
+}
+
+/* Mystic Button */
+.mystic-button {
+  background: linear-gradient(135deg, 
+    rgba(0, 255, 213, 0.1),
+    rgba(121, 40, 202, 0.1)
+  );
+  color: var(--mystic-accent);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.4s ease;
+  border: 1px solid var(--mystic-accent);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(4px);
+  text-shadow: 0 0 8px var(--mystic-accent);
+}
+
+.mystic-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px var(--mystic-glow);
+  background: linear-gradient(135deg, 
+    rgba(0, 255, 213, 0.2),
+    rgba(121, 40, 202, 0.2)
+  );
+}
+
+.mystic-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 255, 213, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.mystic-button:hover::before {
+  left: 100%;
+}
+
+/* Firefly Effect */
+.firefly {
+  position: fixed;
+  width: 3px;
+  height: 3px;
+  background: var(--mystic-accent);
+  border-radius: 50%;
+  filter: blur(1px);
+  animation: float-firefly 15s infinite linear;
+  pointer-events: none;
+  box-shadow: 0 0 10px var(--mystic-accent);
+}
+
+@keyframes float-firefly {
+  0% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(100px, -100px) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Fog Effect */
+.fog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 255, 213, 0.01) 0px,
+      rgba(0, 255, 213, 0.02) 5px,
+      transparent 5px,
+      transparent 10px
+    );
+  filter: blur(8px);
+  opacity: 0.1;
+  animation: fog-drift 30s infinite linear;
+  pointer-events: none;
+}
+
+@keyframes fog-drift {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(50%);
+  }
+}
+
+/* Glow Text */
+.glow-text {
+  text-shadow: 0 0 10px var(--mystic-accent);
+  animation: glow-pulse 3s infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    text-shadow: 0 0 10px var(--mystic-accent);
+  }
+  50% {
+    text-shadow: 0 0 20px var(--mystic-accent),
+                 0 0 30px var(--mystic-secondary);
+  }
+} 

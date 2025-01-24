@@ -3,19 +3,230 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --cosmic-dark: #0f0f1a;
+  --cosmic-light: #2a2a4a;
+  --cosmic-accent: #7f5af0;
+  --cosmic-text: #fffffe;
+  --cosmic-secondary: #94a1b2;
+  --cosmic-gradient-1: #2d00f7;
+  --cosmic-gradient-2: #ff0080;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-[var(--cosmic-dark)] text-[var(--cosmic-text)];
+  overflow-x: hidden;
+}
+
+.section-container {
+  @apply min-h-screen w-full relative;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.cosmic-gradient {
+  background: linear-gradient(135deg, 
+    var(--cosmic-gradient-1),
+    var(--cosmic-gradient-2)
+  );
+}
+
+.cosmic-card {
+  @apply backdrop-blur-lg bg-[var(--cosmic-light)]/10 
+         border border-[var(--cosmic-light)]/20 rounded-xl 
+         shadow-lg shadow-[var(--cosmic-accent)]/10
+         hover:shadow-[var(--cosmic-accent)]/20 
+         transition-all duration-300;
+}
+
+.cosmic-button {
+  @apply px-6 py-2 rounded-full font-medium
+         bg-gradient-to-r from-[var(--cosmic-gradient-1)] to-[var(--cosmic-gradient-2)]
+         hover:shadow-lg hover:shadow-[var(--cosmic-accent)]/20
+         transition-all duration-300 transform hover:scale-105;
+}
+
+.nav-item {
+  @apply relative px-4 py-2 text-[var(--cosmic-text)]/70 
+         hover:text-[var(--cosmic-text)] transition-colors;
+}
+
+.nav-item::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-0 h-0.5 
+         bg-gradient-to-r from-[var(--cosmic-gradient-1)] to-[var(--cosmic-gradient-2)]
+         transition-all duration-300;
+}
+
+.nav-item:hover::after {
+  @apply w-full;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px var(--cosmic-accent);
+    opacity: 0.8;
+  }
+  50% { 
+    box-shadow: 0 0 40px var(--cosmic-accent);
+    opacity: 1;
+  }
+}
+
+.cosmic-glow {
+  animation: glow 4s ease-in-out infinite;
+}
+
+@keyframes floatingGradient {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* Scroll Progress Bar */
+.scroll-progress {
+  @apply fixed top-0 left-0 w-full h-1 z-50;
+  background: linear-gradient(to right,
+    var(--cosmic-gradient-1),
+    var(--cosmic-gradient-2)
+  );
+  transform-origin: 0%;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cosmic-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    var(--cosmic-gradient-1),
+    var(--cosmic-gradient-2)
+  );
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cosmic-accent);
+}
+
+/* Enhanced Animations */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes rotateGlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes floatingStar {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(10px, -10px) rotate(120deg); }
+  66% { transform: translate(-10px, 10px) rotate(240deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+.shimmer-effect {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite linear;
+}
+
+.rotating-glow {
+  animation: rotateGlow 20s linear infinite;
+}
+
+.floating-star {
+  animation: floatingStar 8s ease-in-out infinite;
+}
+
+/* Noise texture */
+.noise-texture {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.02;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* 3D Card Effects */
+.perspective {
+  perspective: 2000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* Card hover effects */
+@keyframes cardFloat {
+  0%, 100% {
+    transform: translateZ(20px) rotateX(-5deg) rotateY(5deg);
+  }
+  50% {
+    transform: translateZ(30px) rotateX(-8deg) rotateY(8deg);
+  }
+}
+
+.card-float {
+  animation: cardFloat 6s ease-in-out infinite;
+}
+
+/* Card glow effect */
+@keyframes cardGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(127, 90, 240, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(127, 90, 240, 0.4);
+  }
+}
+
+.card-glow {
+  animation: cardGlow 4s ease-in-out infinite;
 }
