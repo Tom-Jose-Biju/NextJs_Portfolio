@@ -1,11 +1,5 @@
-'use client'
+import AboutPageContent from '@/components/AboutPage'
 
-import { AboutSectionHome } from '@/components/sections/About'
-
-export default function AboutPage() {
-  return (
-    <main className="w-full">
-      <AboutSectionHome />
-    </main>
-  )
+export default function Page() {
+  return <AboutPageContent />
 }
